@@ -146,6 +146,7 @@ class Activity(db.Model):
     @classmethod
     def GetLastForUser(cls, user, dataset=None):
         activity = Activity.GetForUser(user, dataset=dataset)
+        activity = [a for a in activity if a.dataset.active]
         return activity[0] if activity else None
 
     @classmethod
