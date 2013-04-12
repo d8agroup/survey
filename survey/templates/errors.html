@@ -1,0 +1,9 @@
+{% if errors %}
+    <div class="ui-widget errors">
+        <div class="ui-state-error ui-corner-all">
+            {% for error in errors %}
+                <p><i class="icon-warning-sign"></i> {{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

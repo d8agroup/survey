@@ -1,0 +1,24 @@
+{% for activity in user_activity %}
+    <li>
+        <table class="activity-details hide">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Left Side</th>
+                    <th>Right Side</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Main Question</th>
+                    <td>{{ activity['configuration']['chart_area_one'].get('main_question', {}).get('display_name', '') }}</td>
+                    <td>{{ activity['configuration']['chart_area_two'].get('main_question', {}).get('display_name', '') }}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">{{ activity['configuration'].created }}</th>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/static/dynamicimages/{{ activity['configuration'].activity_id }}_small.png" class="thumbnail" data-activity="{{ activity|tojson }}"/>
+    </li>
+{% endfor %}

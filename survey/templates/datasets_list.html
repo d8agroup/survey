@@ -1,0 +1,7 @@
+{% for dataset in datasets %}
+    <div class="dataset ui-widget-content ui-corner-all ui-state-default" data-dataset_id='{{ dataset.id }}'>
+        <a class="btn btn-danger btn-mini hide remove-dataset-button"><i class="icon-remove"></i></a>
+        <p class="name">{{ dataset.display_name }}</p>
+        <p class="created">Created on: {{ dataset.created.strftime('%Y-%m-%d') }}</p>
+    </div>
+{% endfor %}

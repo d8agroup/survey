@@ -1,0 +1,17 @@
+<a class="remove-chart-button"><i class="icon-remove-circle close-button"></i></a>
+<div class="row-fluid questions-and-chart">
+    <div class="span4">
+        <div class="question-container"></div>
+    </div>
+    <div class="span8">
+        <div class="chart"></div>
+    </div>
+</div>
+<div class="filters">
+    <h3>Filters</h3>
+    <ul class="filters-list">
+        {% with count = [1,2,3] %}
+            {% include 'filters_list.html' %}
+        {% endwith %}
+    </ul>
+</div>

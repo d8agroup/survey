@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block js %}{% endblock %}
+
+{% block page %}
+    <div class="hero-unit" id="main-banner">
+        <h1>MetaLayer Survey</h1>
+        <div id="main-banner-insert" class="ui-corner-all">
+            <img src="/static/img/splash/logo_blue_frame_medium.png" />
+            <h2>Instantly visualize surveys</h2>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span4 ui-corner-all ui-state-default callout" id="callout-contact-us">
+            <div class="content">
+                <h2>Want to try Survey?</h2>
+                <p>MetaLayer server is currently in private beta.</p>
+                <p>If you would like to arrange a demo or try it for your self, please contact us.</p>
+                <p>
+                    <a class="btn btn-primary" id="contact-us-button" href="http://metalayer.wufoo.com/forms/contact-the-metalayer-staff/" target="_blank">
+                        <i class="icon-envelope"></i> Contact Us
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="span4"></div>
+        <div class="span4"></div>
+    </div>
+{% endblock %}

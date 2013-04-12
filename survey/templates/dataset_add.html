@@ -1,0 +1,112 @@
+<a class="btn btn-danger btn-mini" id="cancel-upload-button"><i class="icon-remove"></i> Cancel this upload</a>
+<div id="step-intro" class="step">
+    <h2 class="black-header ui-corner-top">Add a new dataset - Step 1 of 3</h2>
+    <div class="content">
+        <h3>Lets start uploading a new dataset</h3>
+        <div id="upload-instructions" class="row-fluid">
+            <div class="span4 instruction-step ui-state-default ui-corner-all">
+                <div class="clearfix">
+                    <h1>1</h1>
+                    <h5>Got your data?</h5>
+                </div>
+                <img src="/static/img/icon_csv_file.png" id="csv-file-icon" />
+                <p>You can upload any type of survey data but you have to make sure its saved in a csv file.</p>
+                <small>
+                    We're working to support more formats, stay tuned to
+                    <a href="http://twitter.com/metalayersurvey" target="_blank">@metalayersurvey</a>
+                    for updates.
+                </small>
+            </div>
+            <div class="span4 instruction-step ui-state-default ui-corner-all">
+                <div class="clearfix">
+                    <h1>2</h1>
+                    <h5>What does it look like?</h5>
+                </div>
+                <img src="http://cdn1.iconfinder.com/data/icons/function_icon_set/table_green_48.png" id="table-icon" />
+                <p>Files must have the <strong>questions in the first row</strong> and then one respondent's answers per row.</p>
+                <small>
+                    We're working to support more ways of organizing your surveys, stay tuned to
+                    <a href="http://twitter.com/metalayersurvey" target="_blank">@metalayersurvey</a>
+                    for updates.
+                </small>
+            </div>
+            <div class="span4 instruction-step ui-state-default ui-corner-all">
+                <div class="clearfix">
+                    <h1>3</h1>
+                    <h5>Lets go!</h5>
+                </div>
+                <i class="icon-upload" id="upload-icon"></i>
+                <p>Once you have your data ready, click on the upload button bellow.</p>
+                <i class="icon-arrow-down" id="point-to-upload-button"></i>
+            </div>
+        </div>
+        <div class="row-fluid" id="things-to-keep-in-mind">
+            <div class="span3">
+                <i class="icon-asterisk" id="large-asterisk" />
+                <h5>Things to keep in mind</h5>
+            </div>
+            <div class="span8">
+                {%
+                    with infos = [
+                        "Depending on how large the dataset it, it can take a few minutes to complete the upload process.",
+                        "This app does not currently work with things like free text answer fields, they will be filtered out "
+                        "automatically but you can save time by taking them out before you start this process if you like.",
+                    ]
+                %}
+                    {% include 'info.html' %}
+                {% endwith %}
+            </div>
+        </div>
+        <a class="btn btn-primary btn-large pull-right" id="upload-dataset">
+            <i class="icon-upload"></i> Choose a dataset to upload
+        </a>
+    </div>
+</div>
+<div id="step-processing-upload" class="step hide">
+    <h2 class="black-header ui-corner-top">Add a new dataset - Step 2 of 3</h2>
+    <div class="content">
+        <h3>We're working on it!</h3>
+        <p>We're working through the steps needed to prepare your survey data.</p>
+        <p>Depending on the size of the survey this can take <strong>some</strong> time!</p>
+        <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all" id="upload-progressbar">
+            <div class="ui-progressbar-value ui-widget-header ui-corner-all"></div>
+        </div>
+        <div class="ui-widget infos" id="processing-messages">
+            <div class="ui-state-highlight ui-corner-all">
+                <h5>Progress</h5>
+                <ul class="unstyled">
+                    <li><i class="icon-check-empty"></i> Uploading your data file</li>
+                    <li><i class="icon-check-empty"></i> Assessing the format of the file</li>
+                    <li><i class="icon-check-empty"></i> Assessing the columns and rows of the file</li>
+                    <li><i class="icon-check-empty"></i> Adding your data</li>
+                </ul>
+            </div>
+        </div>
+        <div id="finished-processing" class="hide">
+            <p>You data file has been uploaded and processed and is almost ready for use.</p>
+            <p>Flip over to the last step to complete some clean up and start viewing your data</p>
+            <a class="btn btn-primary btn-large" id="finished-processing-button">
+                <i class="icon-check"></i> We're ready, lets go
+            </a>
+        </div>
+    </div>
+</div>
+<div id="step-processing-upload-complete" class="step hide">
+    <h2 class="black-header ui-corner-top">Add a new dataset - Step 3 of 3</h2>
+    <div class="content">
+        <h3>Take a moment to note down a few things about this dataset</h3>
+        <div id="metadata-form-container"></div>
+        <a class="btn btn-primary btn-large" id="finished-add-dataset-button">
+            <i class="icon-ok"></i> Finish
+        </a>
+    </div>
+</div>
+<div id="step-error" class="step hide">
+    <h2 class="black-header ui-corner-top">Oops, something wend wrong</h2>
+    <div class="content">
+        <h3>Sorry but something went wrong uploading your dataset.</h3>
+        <p>Please review the list of errors below:</p>
+        <div class="error-container"></div>
+        <a id="retry-button" class="btn btn-primary btn-large"><i class="icon-reply"></i> Start again</a>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/lib/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jqplot.donutRenderer.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jqplot.highlighter.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.jqplot.toimage.js"></script>
+    <script type="text/javascript" src="/static/js/survey.js"></script>
+    <script type="text/javascript" src="/static/js/chartarea.js"></script>
+    <script type="text/javascript" src="/static/js/question.js"></script>
+    <script type="text/javascript" src="/static/js/filters.js"></script>
+    <script type="text/javascript" src="/static/js/rewind.js"></script>
+    <script type="text/javascript" src="/static/js/capture.js"></script>
+    <script type="text/javascript">
+        var charts = {
+            "chart-area-one" :[],
+            "chart-area-two" :[]
+        };
+        jQuery.jqplot.config.enablePlugins = true;
+
+        $.getJSON('/home/init', function(return_data) {
+
+            if (return_data.configuration == null) {
+
+                $('#page-body').html(return_data.no_activity_template);
+                $('#rewind-container').ml_survey_rewind('empty');
+                $('#capture-container').ml_survey_capture('empty')
+            }
+            else {
+
+                $('#page-body').ml_survey(return_data);
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block page %}
+    <div id="page-body"></div>
+    <div class="hide">
+        <img src="/static/img/blanko_large_hover.png" width="1" height="1" />
+        <img src="/static/img/blanko_small_hover.png" width="1" height="1" />
+        <img src="/static/img/callout_dark_hover.png" width="1" height="1" />
+    </div>
+{% endblock %}
+
+{% block bottom_nav %}
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-fast-backward"></i> Rewind
+                            </a>
+                            <ul class="dropdown-menu pull-right" id="rewind-container">
+                                <li class="content">
+                                    <form class="form-inline">
+                                        <ul id="rewind-list" class="inline"></ul>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-camera"></i> Capture
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li class="content">
+                                    <form class="form-inline" id="capture-container">
+
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-folder-close"></i> Your datasets
+                            </a>
+                            <ul class="dropdown-menu pull-right" id="your-datasets">
+                                <li class="content">
+                                    <form class="form-inline">
+                                        <div id="dataset-list">
+                                            {% include 'loading.html' %}
+                                        </div>
+                                        <a class="btn btn-primary" id="add-dataset-button">
+                                            <i class="icon-plus-sign"></i> Add a dataset
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

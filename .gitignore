@@ -1,0 +1,6 @@
+*.db
+*.pyc
+.idea
+*.cfg
+application_setup.py
+survey/static/dynamicimages/*.png

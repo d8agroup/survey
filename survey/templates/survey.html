@@ -1,0 +1,23 @@
+<div id="survey">
+    <ul id="questions" class="inline">
+        {% for question in questions %}
+            <li class="question" data-facet_name="{{ question.facet_name }}" data-display_name="{{ question.name }}">
+                <p class="name">{{ question.name }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div id="charts-area" class="row-fluid">
+        <div id="chart-area-one" class="chart-area-container span6">
+            {% include 'chart_area.html' %}
+        </div>
+    {#    <div id="copy-container" class="span2">#}
+    {#        <img src="/static/images/button-right.png" id="copy-right-button" />#}
+    {#        <img src="/static/images/button-left.png" id="copy-left-button" />#}
+    {#    </div>#}
+        <div id="chart-area-two" class="chart-area-container span6">
+            {% include 'chart_area.html' %}
+        </div>
+    </div>
+
+</div>

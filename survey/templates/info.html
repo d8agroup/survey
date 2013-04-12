@@ -1,0 +1,9 @@
+{% if infos %}
+    <div class="ui-widget infos">
+        <div class="ui-state-highlight ui-corner-all">
+            {% for info in infos %}
+                <p><i class="icon-asterisk"></i> {{ info|safe }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,36 @@
+<form action='/add_dataset/edit_metadata/{{ dataset.file_id }}'>
+    <div id="dataset-metadata-container">
+        <div>
+            <label>Dataset Name</label>
+            <input type="text" name="display_name" value="{{ dataset.display_name or dataset.file_name }}" />
+        </div>
+        <div>
+            <label>Dataset Description</label>
+            <input type="text" name="description" value="{{ dataset.description or '' }}" />
+        </div>
+    </div>
+    <div id="edit-questions-container">
+        <h3>Update the questions</h3>
+        <p>Here are all the questions we were able to extract from your dataset.</p>
+        <p>In later version you will be able to change the name of these and do other exciting things!</p>
+        <ul id="edit-questions-list" class="clearfix">
+            {% for question in questions %}
+                {% if question.data_type == 'text_facet' %}
+                    <li class="edit-question">
+                        <div class="inner ui-corner-all">
+                            <p class="question-name">{{ question.name }}</p>
+                            <p class="label label-success">active</p>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="edit-question unsupported">
+                        <div class="inner ui-corner-all">
+                            <p class="question-name">{{ question.name }}</p>
+                            <p class="label label-warning">The data in this column is not currently supported.</p>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</form>
