@@ -135,7 +135,10 @@ def read_file_and_return_content(file_object):
         return False
 
     def _create_facet_name_from_column_header(column_header):
-        return ''.join([c for c in column_header if c.isalnum() or c == ' ']) + "_s"
+        is_character = re.compile('^[a-z]$')
+        column_header = column_header.lower()
+        only_word_characters = ''.join([c for c in column_header if is_character.search(c)])
+        return only_word_characters + "_s"
 
     all_rows = [r for r in UnicodeCsvReader(file_object)]
     header_objects = [{'name': c, 'facet_name': _create_facet_name_from_column_header(c)} for c in all_rows[0]]
@@ -169,7 +172,11 @@ def send_content_to_solr(items, file_id):
         item['file_id_s'] = file_id
         item['scope_s'] = 'survey'
         item['id'] = md5('%f - %i' % (time.time(), randint(0, 1000000))).hexdigest()
-    solr_connection.add_many(items, _commit=True)
+        try:
+            solr_connection.add_many([item], _commit=True)
+        except Exception as e:
+            pass
+    #solr_connection.add_many(items, _commit=True)
 
 
 def generate_color_pallet(number_needed, color='green'):

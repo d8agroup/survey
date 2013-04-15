@@ -68,7 +68,7 @@ class Dataset(db.Model):
     def update_progress(self, progress, errors=None):
         self.progress = progress
         if errors:
-            self.errors = '|'.join(errors)
+            self.errors = '|'.join('%s' % e for e in errors)
         return self
 
     def activate(self):

@@ -37,7 +37,7 @@ footer #copyright       { padding:8px;}
 #dataset-name i     { padding-right:13px; font-size:30px; position:relative; top:3px; }
 
 #questions          { width: 100%; overflow:auto; overflow-y:hidden; -ms-overflow-y: hidden; white-space: nowrap; padding-bottom:10px; }
-.question           { background:url('/static/img/callout_dark.png') no-repeat; background-size:100%; width:160px; height:70px; z-index:900; cursor: move; }
+.question           { background:url('/static/img/callout_dark.png') no-repeat; background-size:100%; width:160px; height:70px; z-index:900; cursor: move; vertical-align:top;}
 .question .name     { color:white; text-shadow:1px 1px #555; padding:10px 15px; white-space: normal; overflow:hidden; height:34px; display:block; font-size:12px; line-height:14px;}
 
 .chart-area-container               { background-color:#1d2228; border:2px solid #999; position:relative; height:530px;}
