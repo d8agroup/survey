@@ -167,7 +167,7 @@ def read_file_and_return_content(file_object):
 
 
 def send_content_to_solr(items, file_id):
-    solr_connection = solr.SolrConnection('http://delv.demo.metalayer.com:8080/solr/')
+    solr_connection = solr.SolrConnection('http://dashboard.metalayer.com:8080/solr/')
     for item in items:
         item['file_id_s'] = file_id
         item['scope_s'] = 'survey'
@@ -215,7 +215,7 @@ def get_graph_data_from_solr(chart_area_id, filters, questions):
         return_data['graph_type'] = 'pie'
     facet_names = [q['facet_name'] for q in questions]
     facet_names += [f['facet_name'] for f in filters]
-    solr_connection = solr.SolrConnection('http://delv.demo.metalayer.com:8080/solr/')
+    solr_connection = solr.SolrConnection('http://dashboard.metalayer.com:8080/solr/')
     results = solr_connection.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=100)
     for question in questions:
         facet_name = question['facet_name']

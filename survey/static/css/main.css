@@ -19,6 +19,8 @@ footer                  { position:fixed; bottom:0; left:0; width:100%; color:#9
 footer #copyright       { padding:8px;}
 
 #empty-capture              { width:300px; }
+#capture-container	    { width:550px; }
+#capture .thumbnail	    { width:400px; }
 
 #rewind-container               { width:910px;}
 #rewind-list                    { width: 100%; overflow:auto; overflow-y:hidden; -ms-overflow-y: hidden; white-space: nowrap; padding-bottom:5px; position:relative;}
