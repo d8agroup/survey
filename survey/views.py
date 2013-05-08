@@ -96,7 +96,8 @@ def get_graph_data():
     questions = search_data['questions']
     filters = search_data['filters']
     dataset_id = request.form.get('dataset_id')
-    return_data = get_graph_data_from_solr(chart_area_id, dataset_id, filters, questions)
+    file_id = Dataset.GetById(dataset_id).file_id
+    return_data = get_graph_data_from_solr(chart_area_id, file_id, filters, questions)
     return jsonify(
         graph_type='pie',
         chart_area_id=return_data['chart_area_id'],

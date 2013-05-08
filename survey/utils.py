@@ -199,23 +199,26 @@ def generate_color_pallet(number_needed, color='green'):
     return ['#' + format((c[0] << 16) | (c[1] << 8) | c[2], '06x') for c in colors]
 
 
-def get_graph_data_from_solr(chart_area_id, dataset_id, filters, questions):
+def get_graph_data_from_solr(chart_area_id, file_id, filters, questions):
     def stringify_label(label):
         if label.isdigit():
             return '&nbsp;%s' % label
         return label
 
     return_data = {'chart_area_id': chart_area_id, 'graph_data': {}, 'filters': {}}
-    query = 'file_id_s:%s' % dataset_id
+    query = 'file_id_s:%s' % file_id
     if len([f for f in filters if 'facet_value' in f and f['facet_value']]):
         query += ' AND ' + ' AND '.join(
             '%s:"%s"' % (f['facet_name'], f['facet_value'])
             for f in filters if 'facet_value' in f and f['facet_value'])
+
     return_data['graph_type'] = 'pie'
     facet_names = [q['facet_name'] for q in questions]
     facet_names += [f['facet_name'] for f in filters]
+
     solr_connection = solr.SolrConnection('http://dashboard.metalayer.com:8080/solr/')
     results = solr_connection.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=100)
+
     for question in questions:
         facet_name = question['facet_name']
         graph_dict = results.facet_counts['facet_fields'][facet_name]

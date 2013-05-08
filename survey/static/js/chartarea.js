@@ -158,7 +158,7 @@
             chart_area.removeClass('has-data');
 
             chart_area.load('/survey/html/chart_area', function(){
-                chart_area.ml_survey_chartarea();
+                chart_area.ml_survey_chartarea({dataset_id: chart_area.data('dataset_id')});
                 if (callback != null)
                     callback();
             });
@@ -211,7 +211,7 @@
         build_from_data:function(data){
             var chart_area = this;
 
-            if (data != null && data.main_question.facet_name != null) {
+            if (data != null && data.main_question != null && data.main_question.facet_name != null) {
 
                 chart_area.ml_survey_chartarea('clear', function(){
                     chart_area.find('.question-container').data('facet_name', data.main_question.facet_name);
