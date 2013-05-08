@@ -51,7 +51,7 @@
 
                         var dataset_id = dataset.data('dataset_id');
 
-                        $('#page-body').ml_survey({ dataset_id: dataset_id });
+                        $('#page-body').ml_survey({ dataset_id: dataset_id, dataset_name: dataset.find('.name').html() });
                     })
 
                     .mouseenter(function() {
