@@ -1,8 +1,10 @@
 (function($){
     var methods = {
-        init:function(){
+        init:function(data){
 
             var chart_area = this;
+
+            chart_area.data('dataset_id', data.dataset_id);
 
             chart_area.find('.filters').ml_survey_filters();
 
@@ -65,7 +67,11 @@
 
                 var search_data = JSON.stringify({questions:questions, filters:filters});
 
-                var post_data = { search_data:search_data, chart_area_id:chart_area.attr('id') };
+                var post_data = {
+                    search_data:search_data,
+                    chart_area_id:chart_area.attr('id'),
+                    dataset_id: chart_area.data('dataset_id')
+                };
 
                 $.post('/survey/get_graph_data', post_data, function(data){
 

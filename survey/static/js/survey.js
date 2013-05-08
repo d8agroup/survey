@@ -22,14 +22,16 @@
                     $(this).ml_survey_question();
                 });
 
-                container.find('#chart-area-one').ml_survey_chartarea();
+                container.find('#chart-area-one').ml_survey_chartarea({dataset_id: dataset_id});
+
                 if (data.configuration != null && data.configuration.chart_area_one != null)
                     container.find('#chart-area-one').ml_survey_chartarea(
                         'build_from_data',
                         data.configuration.chart_area_one
                     );
          
-                container.find('#chart-area-two').ml_survey_chartarea();
+                container.find('#chart-area-two').ml_survey_chartarea({dataset_id: dataset_id});
+
                 if (data.configuration != null && data.configuration.chart_area_two != null)
                     container.find('#chart-area-two').ml_survey_chartarea(
                         'build_from_data',
