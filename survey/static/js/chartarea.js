@@ -92,16 +92,17 @@
                                 seriesDefaults: {
                                     renderer: jQuery.jqplot.DonutRenderer,
                                     rendererOptions: {
-                                        sliceMargin:4,
+                                        dataLabelThreshold: 0.1,
+                                        sliceMargin:1,
                                         showDataLabels: true,
                                         dataLabels:data.graph_data.labels
-                                    },
-                                    highlighter: {
-                                        show: false,
-                                        formatString:'',
-                                        tooltipLocation:'s',
-                                        useAxesFormatters:false
                                     }
+//                                    highlighter: {
+//                                        show: false,
+////                                        formatString:'%s',
+//                                        tooltipLocation:'s',
+//                                        useAxesFormatters:false
+//                                    }
                                 },
                                 seriesColors:data.graph_colors,
                                 grid:{

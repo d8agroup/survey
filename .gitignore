@@ -6,3 +6,4 @@
 .idea
 application_setup.py
 survey/static/dynamicimages/*.png
+local_runserver.py

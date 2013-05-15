@@ -224,7 +224,7 @@ def get_graph_data_from_solr(chart_area_id, file_id, filters, questions):
         graph_dict = results.facet_counts['facet_fields'][facet_name]
         sum_of_values = sum(v for v in graph_dict.values()) or 1
         graph_data = [
-            {'label': stringify_label(key), 'value': int(100 * (float(value) / sum_of_values))}
+            {'label': stringify_label(key), 'value': round(100 * (float(value) / sum_of_values), 3)}
             for key, value in graph_dict.items()]
         graph_data = sorted(graph_data, key=lambda x: x['value'], reverse=True)
         graph_data = graph_data[:10]
@@ -232,7 +232,7 @@ def get_graph_data_from_solr(chart_area_id, file_id, filters, questions):
         return_data['graph_data'] = {
             'key': question['display_name'],
             'values': [[g['label'], g['value']] for g in graph_data],
-            'labels': ['%s : %i%s' % (g['label'], g['value'], "%") for g in graph_data]}
+            'labels': ['%s : %.2f%s' % (g['label'], g['value'], "%") for g in graph_data]}
         return_data['graph_colors'] = generate_color_pallet(
             len(graph_data),
             'green' if chart_area_id == 'chart-area-one' else 'orange')
